@@ -1,9 +1,9 @@
 'use strict'
 
-var validator = require("validator");
-var fs = require("fs");
-var path = require("path");
-var Article = require('../models/article');
+var validator = require("validator"); //libreria usada pa validar input de usuario  
+var fs = require("fs"); //crud archivos del server
+var path = require("path"); //sirve pa trabajar con paths de manera segura entre linux y windows
+var Article = require('../models/article'); 
 
 var controller = {
 
@@ -235,6 +235,7 @@ var controller = {
         var file = path.basename(req.params.image.trim());
         var pathFile = path.resolve(__dirname, '../upload/articles', file);
 
+        //fs.access verifica que el archivo exista. F_OK nos indica si se puede leer el file
         fs.access(pathFile, fs.constants.F_OK, (err) => {
             if (err) {
                 return res.status(404).send({

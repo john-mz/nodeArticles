@@ -1,9 +1,10 @@
 // clase molde para guardar los datos de los articulos en la base de datos
 'use strict'
 
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'); //libreria para hacer crud en mongodb
 var Schema = mongoose.Schema;
 
+// definimos esquema obligatorio
 var ArticleSchema = Schema({ // estructura de los documentos que se guardarán en la
     title: String,
     content: String,

@@ -1,12 +1,12 @@
 'use strict'
 
-var express = require('express');
+var express = require('express'); //importando framework express
 var ArticleController = require('../controllers/articlecontroller');
 
-var router = express.Router();
+var router = express.Router(); //nos permite separar por rutas cada funcion
 
-var multipart = require("connect-multiparty");
-var md_upload = multipart({ uploadDir: './upload/articles' });
+var multipart = require("connect-multiparty"); //permite recibir files
+var md_upload = multipart({ uploadDir: './upload/articles' }); //permite montar los archivos en dir especifico
 
 
 // Rutas de prueba
