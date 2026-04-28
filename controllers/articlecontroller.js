@@ -20,10 +20,43 @@ var controller = {
     },
 
     save: async (req, res) => {
-        // Aquí iría la lógica para guardar artículos
-        return res.status(200).send({
-            message: "Acción de guardado lista"
-        });
+        var params = req.body;
+
+        try {
+            var validate_title = !validator.isEmpty(params.title);
+            var validate_content = !validator.isEmpty(params.content);
+        } catch (err) {
+            return res.status(200).send({
+                status: 'error',
+                message: 'Faltan datos por enviar!'
+            });
+        }
+
+        if (validate_title && validate_content) {
+            var article = new Article();
+            article.title = params.title;
+            article.content = params.content;
+            article.date = params.date || Date.now();
+            article.image = params.image || null;
+
+            try {
+                const articleStored = await article.save();
+                return res.status(201).send({
+                    status: 'success',
+                    article: articleStored
+                });
+            } catch (err) {
+                return res.status(500).send({
+                    status: 'error',
+                    message: 'Error al guardar el artículo!'
+                });
+            }
+        } else {
+            return res.status(200).send({
+                status: 'error',
+                message: 'La validación no es correcta!'
+            });
+        }
     },
 
     getArticles: async (req, res) => {

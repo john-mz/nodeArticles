@@ -8,8 +8,8 @@ var bodyParser = require('body-parser'); // importa middleware para procesar los
 var app = express(); //inicializamos express
 
 //middlewares (cors, body-parser, etc.). son importantes porque express basico no puede leer el body de la peticion (ni json, ni data capturada de forms, ni archivos)
-app.use(bodyParser.urlencoded({extended:false})); //procesa datos enviados por fc i.e usando form-urlencoded
-app.use(bodyParser.json()); //convierte dato que llegue tipo json texto en objeto de js accesible con req.body
+app.use(bodyParser.urlencoded({extended:false})); //Si la petición entrante trae el formato de un formulario web tradicional (x-www-form-urlencoded), captúrala, desármala y conviértela en un objeto de JavaScript"
+app.use(bodyParser.json()); //Si la petición entrante trae el formato de un JSON puro (application/json), captúrala, procésala y conviértela en un objeto de JavaScript
 
 var article_routes = require('./routes/articleroutes'); // rutas de articulos
 
